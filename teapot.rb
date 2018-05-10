@@ -19,7 +19,7 @@ define_target 'coroutine-library' do |target|
 	target.build do
 		source_root = target.package.path + 'source'
 		copy headers: source_root.glob('Coroutine/**/*.{h,hpp}')
-		build static_library: 'Coroutine', source_files: source_root.glob('Coroutine/**/*.cpp')
+		build static_library: 'Coroutine', source_files: source_root.glob('Coroutine/**/*.{c,cpp}')
 	end
 	
 	target.depends 'Build/Files'
@@ -92,6 +92,7 @@ define_configuration 'development' do |configuration|
 	configuration.require 'generate-cpp-class'
 	
 	configuration.require "generate-project"
+	configuration.require "generate-travis"
 end
 
 define_configuration "coroutine" do |configuration|

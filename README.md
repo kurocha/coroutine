@@ -1,10 +1,8 @@
 # Coroutine
 
-Coroutine is a fantastic project with lots of potential.
+A high-performance cross-platform implementation of coroutines.
 
-For examples and documentation please see the main [project page][1].
-
-[1]: http://teapot.nz/
+[![Build Status](https://travis-ci.org/kurocha/coroutine.svg?branch=master)](https://travis-ci.org/kurocha/coroutine)
 
 ## Setup
 
@@ -31,11 +29,42 @@ Run the tests to confirm basic functionality:
 
 ## Usage
 
-You can run the tool by executing the following:
+There are several implementations. You will need to compile the relevant file for your platform.
 
-	$ teapot Run/Coroutine
+Here is a simple example.
+
+```c
+#include <Coroutine/Coroutine.h>
+
+coroutine_context main_fiber, test_fiber;
+
+COROUTINE test(coroutine_context * from, coroutine_context * self)
+{
+	from = coroutine_transfer(self, from);
+	coroutine_transfer(self, from);
+	
+	abort();
+}
+
+int main(int argc, const char * argv[]) {
+	std::size_t size = 1024*2;
+	void * base_pointer = malloc(size);
+
+	coroutine_initialize(&main_fiber, nullptr, nullptr, 0);
+	coroutine_initialize(&test_fiber, &test, (char*)base_pointer+size, size);
+
+	coroutine_transfer(&main_fiber, &test_fiber);
+	coroutine_transfer(&main_fiber, &test_fiber);
+
+	return 0;
+}
+```
+
+You may like to augment the `struct coroutine_context` to include additional fields, but the stack pointer must always remain the first one.
 
 ## Contributing
+
+Please feel free to submit other implementations. Try to keep the implementations isolated.
 
 1. Fork it.
 2. Create your feature branch (`git checkout -b my-new-feature`).

@@ -35,3 +35,6 @@ build-files:
 streams:
   :commit: 396c54ce376f96be9b9ca994cedf1c54452a7073
   :branch: master
+generate-travis:
+  :commit: 206b0412bb9888279db6c0758a33cf22e7b47363
+  :branch: master

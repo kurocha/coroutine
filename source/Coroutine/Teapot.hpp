@@ -1,4 +1,0 @@
-
-namespace Coroutine {
-	void sing();
-}
