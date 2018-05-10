@@ -8,8 +8,12 @@
 
 .text
 
+.globl coroutine_transfer
+coroutine_transfer:
+
 .globl _coroutine_transfer
 _coroutine_transfer:
+
 	# Save caller state
 	pushq %rbp
 	pushq %rbx
