@@ -24,7 +24,7 @@ platform-darwin-ios:
   :commit: c81ccc5ee73cb1c6ae31e378148c4cb8c9f8759e
   :branch: master
 build-clang:
-  :commit: e56387e331223851ab2b5202bed767280748f698
+  :commit: 2da6a9807b6ee15bfa18e0d685bdb816cb658602
   :branch: master
 build-darwin:
   :commit: 9f2234a91f84955cd82f2af89efea9734c6475ca
@@ -37,4 +37,10 @@ streams:
   :branch: master
 generate-travis:
   :commit: 206b0412bb9888279db6c0758a33cf22e7b47363
+  :branch: master
+platform-linux:
+  :commit: da4b316877df89a54e69671f01fcf01ad1e41ed9
+  :branch: master
+build-linux:
+  :commit: 6de534e35547e5f0bb8f35e57d39464facec9df4
   :branch: master
