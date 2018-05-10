@@ -19,7 +19,7 @@ define_target 'coroutine-library' do |target|
 	target.build do
 		source_root = target.package.path + 'source'
 		copy headers: source_root.glob('Coroutine/**/*.{h,hpp}')
-		build static_library: 'Coroutine', source_files: source_root.glob('Coroutine/**/*.{c,cpp}')
+		build static_library: 'Coroutine', source_files: source_root.glob('Coroutine/**/*.{s,cpp}')
 	end
 	
 	target.depends 'Build/Files'
