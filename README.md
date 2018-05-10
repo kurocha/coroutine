@@ -36,8 +36,6 @@ Here is a simple example.
 ```c
 #include <Coroutine/Coroutine.h>
 
-coroutine_context main_fiber, test_fiber;
-
 COROUTINE test(coroutine_context * from, coroutine_context * self)
 {
 	from = coroutine_transfer(self, from);
@@ -47,6 +45,8 @@ COROUTINE test(coroutine_context * from, coroutine_context * self)
 }
 
 int main(int argc, const char * argv[]) {
+	coroutine_context main_fiber, test_fiber;
+	
 	std::size_t size = 1024*2;
 	void * base_pointer = malloc(size);
 
