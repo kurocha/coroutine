@@ -11,6 +11,7 @@
 .globl coroutine_transfer
 coroutine_transfer:
 
+# For older linkers
 .globl _coroutine_transfer
 _coroutine_transfer:
 
