@@ -15,26 +15,6 @@ end
 
 # Build Targets
 
-define_target 'coroutine-library' do |target|
-	target.build do
-		source_root = target.package.path + 'source'
-		copy headers: source_root.glob('Coroutine/**/*.{h,hpp}')
-		build static_library: 'Coroutine', source_files: source_root.glob('Coroutine/**/*.{s,cpp}')
-	end
-	
-	target.depends 'Build/Files'
-	target.depends 'Build/Clang'
-	
-	target.depends :platform
-	target.depends 'Language/C++14', private: true
-	
-	target.provides 'Library/Coroutine' do
-		append linkflags [
-			->{install_prefix + 'lib/libCoroutine.a'},
-		]
-	end
-end
-
 define_target 'coroutine-test' do |target|
 	target.build do |*arguments|
 		test_root = target.package.path + 'test'
@@ -48,32 +28,6 @@ define_target 'coroutine-test' do |target|
 	target.depends 'Language/C++14', private: true
 	
 	target.provides 'Test/Coroutine'
-end
-
-define_target 'coroutine-executable' do |target|
-	target.build do
-		source_root = target.package.path + 'source'
-		
-		build executable: 'Coroutine', source_files: source_root.glob('Coroutine.cpp')
-	end
-	
-	target.depends 'Build/Files'
-	target.depends 'Build/Clang'
-	
-	target.depends :platform
-	target.depends 'Language/C++14', private: true
-	
-	target.depends 'Library/Coroutine'
-	target.provides 'Executable/Coroutine'
-end
-
-define_target 'coroutine-run' do |target|
-	target.build do |*arguments|
-		run executable: 'Coroutine', arguments: arguments
-	end
-	
-	target.depends 'Executable/Coroutine'
-	target.provides 'Run/Coroutine'
 end
 
 # Configurations
@@ -97,4 +51,28 @@ end
 
 define_configuration "coroutine" do |configuration|
 	configuration.public!
+	
+	host(/x86_64/) do
+		configuration.require "coroutine-amd64"
+	end
+
+	host(/i386/) do
+		configuration.require "coroutine-x86"
+	end
+
+	host(/win32/) do
+		configuration.require "coroutine-win32"
+	end
+	
+	host(/win64/) do
+		configuration.require "coroutine-win64"
+	end
+	
+	host(/arm32/) do
+		configuration.require "coroutine-arm32"
+	end
+	
+	host(/arm64/) do
+		configuration.require "coroutine-arm64"
+	end
 end

@@ -1,5 +1,5 @@
 //
-//  transfer.cpp
+//  Transfer.cpp
 //  This file is part of the "Coroutine" project and released under the MIT License.
 //
 //  Created by Samuel Williams on 10/5/2018.
@@ -8,7 +8,7 @@
 
 #include <UnitTest/UnitTest.hpp>
 
-#include <Coroutine/Coroutine.h>
+#include <Coroutine/Context.h>
 
 namespace Coroutine
 {
@@ -18,9 +18,11 @@ namespace Coroutine
 	{
 		from = coroutine_transfer(self, from);
 		coroutine_transfer(self, from);
+		
+		abort();
 	}
 	
-	UnitTest::Suite transferTestSuite {
+	UnitTest::Suite TransferTestSuite {
 		"coroutine_transfer",
 		
 		{"it can transfer execution context",
