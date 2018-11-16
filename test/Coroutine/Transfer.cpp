@@ -14,7 +14,7 @@ namespace Coroutine
 {
 	using namespace UnitTest::Expectations;
 	
-	COROUTINE test(coroutine_context * from, coroutine_context * self)
+	COROUTINE test(coroutine_context * from, coroutine_context * self, void * argument)
 	{
 		from = coroutine_transfer(self, from);
 		coroutine_transfer(self, from);
@@ -32,8 +32,8 @@ namespace Coroutine
 				std::size_t size = 1024*2;
 				void * base_pointer = malloc(size);
 
-				coroutine_initialize(&main_fiber, nullptr, nullptr, 0);
-				coroutine_initialize(&test_fiber, &test, (char*)base_pointer+size, size);
+				coroutine_initialize(&main_fiber, nullptr, nullptr, nullptr, 0);
+				coroutine_initialize(&test_fiber, &test, nullptr, (char*)base_pointer+size, size);
 				
 				{
 					coroutine_context * from = coroutine_transfer(&main_fiber, &test_fiber);

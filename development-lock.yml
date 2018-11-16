@@ -44,3 +44,6 @@ platform-linux:
 build-linux:
   :commit: 6de534e35547e5f0bb8f35e57d39464facec9df4
   :branch: master
+coroutine-amd64:
+  :commit: 24fc90a89557fd232aaa00f5d2b373e1dd21c15b
+  :branch: master
