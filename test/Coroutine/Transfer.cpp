@@ -14,7 +14,7 @@ namespace Coroutine
 {
 	using namespace UnitTest::Expectations;
 	
-	COROUTINE test(coroutine_context * from, coroutine_context * self, void * argument)
+	COROUTINE test(CoroutineContext * from, CoroutineContext * self, void * argument)
 	{
 		from = coroutine_transfer(self, from);
 		coroutine_transfer(self, from);
@@ -27,21 +27,20 @@ namespace Coroutine
 		
 		{"it can transfer execution context",
 			[](UnitTest::Examiner & examiner) {
-				coroutine_context main_fiber, test_fiber;
+				CoroutineContext main_fiber = {NULL}, test_fiber;
 				
 				std::size_t size = 1024*2;
 				void * base_pointer = malloc(size);
-
-				coroutine_initialize(&main_fiber, nullptr, nullptr, nullptr, 0);
+				
 				coroutine_initialize(&test_fiber, &test, nullptr, (char*)base_pointer+size, size);
 				
 				{
-					coroutine_context * from = coroutine_transfer(&main_fiber, &test_fiber);
+					CoroutineContext * from = coroutine_transfer(&main_fiber, &test_fiber);
 					examiner.expect(from).to(be == &test_fiber);
 				}
 				
 				{
-					coroutine_context * from = coroutine_transfer(&main_fiber, &test_fiber);
+					CoroutineContext * from = coroutine_transfer(&main_fiber, &test_fiber);
 					examiner.expect(from).to(be == &test_fiber);
 				}
 			}
