@@ -8,7 +8,7 @@ cache: bundler
 matrix:
   include:
     - os: windows
-      lang: c++
+      language: c++
     - compiler: gcc
       addons:
         apt:
