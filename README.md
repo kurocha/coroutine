@@ -36,7 +36,7 @@ Here is a simple example.
 ```c
 #include <Coroutine/Coroutine.h>
 
-COROUTINE test(coroutine_context * from, coroutine_context * self)
+COROUTINE test(CoroutineContext * from, CoroutineContext * self)
 {
 	from = coroutine_transfer(self, from);
 	coroutine_transfer(self, from);
@@ -45,7 +45,7 @@ COROUTINE test(coroutine_context * from, coroutine_context * self)
 }
 
 int main(int argc, const char * argv[]) {
-	coroutine_context main_fiber, test_fiber;
+	CoroutineContext main_fiber, test_fiber;
 	
 	std::size_t size = 1024*2;
 	void * base_pointer = malloc(size);
@@ -60,7 +60,7 @@ int main(int argc, const char * argv[]) {
 }
 ```
 
-You may like to augment the `struct coroutine_context` to include additional fields, but the stack pointer must always remain the first one.
+You may like to augment the `struct CoroutineContext` to include additional fields, but the stack pointer must always remain the first one.
 
 ## Contributing
 
