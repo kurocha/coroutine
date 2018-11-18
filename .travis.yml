@@ -3,6 +3,7 @@ language: generic
 
 # Setup the compilers:
 matrix:
+  fast_finish: true
   include:
     - os: windows
     - compiler: gcc
