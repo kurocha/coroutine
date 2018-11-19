@@ -22,6 +22,7 @@ define_target 'coroutine-test' do |target|
 		run tests: 'Coroutine', source_files: test_root.glob('Coroutine/**/*.cpp'), arguments: arguments
 	end
 	
+	target.depends 'Library/Time'
 	target.depends 'Library/UnitTest'
 	target.depends 'Library/Coroutine'
 	
@@ -41,6 +42,8 @@ define_configuration 'development' do |configuration|
 	
 	# Provides unit testing infrastructure and generators:
 	configuration.require 'unit-test'
+	
+	configuration.require 'time'
 	
 	# Provides some useful C++ generators:
 	configuration.require 'generate-cpp-class'
