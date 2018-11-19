@@ -45,13 +45,12 @@ COROUTINE test(CoroutineContext * from, CoroutineContext * self)
 }
 
 int main(int argc, const char * argv[]) {
-	CoroutineContext main_fiber, test_fiber;
+	CoroutineContext main_fiber = {NULL}, test_fiber;
 	
 	std::size_t size = 1024*2;
 	void * base_pointer = malloc(size);
 
-	coroutine_initialize(&main_fiber, nullptr, nullptr, 0);
-	coroutine_initialize(&test_fiber, &test, (char*)base_pointer+size, size);
+	coroutine_initialize(&test_fiber, &test, NULL, (char*)base_pointer+size, size);
 
 	coroutine_transfer(&main_fiber, &test_fiber);
 	coroutine_transfer(&main_fiber, &test_fiber);
