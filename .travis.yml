@@ -87,7 +87,7 @@ matrix:
 
 # Install required gems:
 install:
-  - gem install teapot --version "2.2.0"
+  - gem install teapot
 
 # Run tests:
 script:

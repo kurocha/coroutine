@@ -1,6 +1,6 @@
 # Teapot v2.2.0 configuration generated at 2018-05-10 16:02:38 +1200
 
-required_version "2.0"
+required_version "3.0"
 
 # Project Metadata
 
@@ -16,19 +16,17 @@ end
 # Build Targets
 
 define_target 'coroutine-test' do |target|
-	target.build do |*arguments|
-		test_root = target.package.path + 'test'
-		
-		run tests: 'Coroutine', source_files: test_root.glob('Coroutine/**/*.cpp'), arguments: arguments
-	end
-	
 	target.depends 'Library/Time'
 	target.depends 'Library/UnitTest'
 	target.depends 'Library/Coroutine'
 	
 	target.depends 'Language/C++14', private: true
 	
-	target.provides 'Test/Coroutine'
+	target.provides 'Test/Coroutine' do |*arguments|
+		test_root = target.package.path + 'test'
+		
+		run tests: 'Coroutine', source_files: test_root.glob('Coroutine/**/*.cpp'), arguments: arguments
+	end
 end
 
 # Configurations
