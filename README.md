@@ -2,8 +2,6 @@
 
 A high-performance cross-platform implementation of coroutines.
 
-[![Build Status](https://travis-ci.org/kurocha/coroutine.svg?branch=master)](https://travis-ci.org/kurocha/coroutine)
-
 ## Setup
 
 The build tool [teapot] needs to be installed (which requires [Ruby]):
