@@ -15,7 +15,7 @@ namespace Coroutine
 {
 	using namespace UnitTest::Expectations;
 	
-	COROUTINE test(CoroutineContext * from, CoroutineContext * self, void * argument)
+	COROUTINE test(CoroutineContext * from, CoroutineContext * self)
 	{
 		while (true) {
 			from = coroutine_transfer(self, from);

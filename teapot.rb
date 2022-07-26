@@ -25,7 +25,7 @@ define_target 'coroutine-test' do |target|
 	target.provides 'Test/Coroutine' do |*arguments|
 		test_root = target.package.path + 'test'
 		
-		run tests: 'Coroutine', source_files: test_root.glob('Coroutine/**/*.cpp'), arguments: arguments
+		run tests: 'Coroutine-tests', source_files: test_root.glob('Coroutine/**/*.cpp'), arguments: arguments
 	end
 end
 
